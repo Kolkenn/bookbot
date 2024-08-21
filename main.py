@@ -17,6 +17,10 @@ def generate_report(path,word_count,list_sorted):
         if char.isalpha():
             print(f"The character '{char}' appeared {count} times.")
 
+#Function is required for the .sort in Generate Report to work.
+def get_num(dict):
+    return dict['num']
+
 #This function takes a dictionary and converts into a list of dictionaries that can utilize .sort().
 def dict_to_list_sorted(dict):
     list = []
@@ -25,8 +29,7 @@ def dict_to_list_sorted(dict):
         list.append({"name":key,"num":value})
     return list
 
-def get_num(dict):
-    return dict['num']
+
 
 #Take a file path and uses the open() method to open it and the read() to display.
 def get_book_text(path):
