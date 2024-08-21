@@ -1,7 +1,32 @@
 def main():
     book_path = "books/frankenstein.txt"
-    text = get_book_text(book_path)
-    print(count_chars(text))
+    book_text = get_book_text(book_path)
+    book_word_count = count_words(book_text)
+    list_of_chars_sorted = (dict_to_list_sorted(count_chars(book_text)))
+
+    generate_report(book_path,book_word_count,list_of_chars_sorted)
+
+def generate_report(path,word_count,list_sorted):
+    print(f"--- Word and Character Count for {path} ---")
+    print(f"This book has a total of {word_count} words.\n")
+
+    list_sorted.sort(key=get_num,reverse=True)
+    for dict in list_sorted:
+        char = dict['name']
+        count = dict['num']
+        if char.isalpha():
+            print(f"The character '{char}' appeared {count} times.")
+
+#This function takes a dictionary and converts into a list of dictionaries that can utilize .sort().
+def dict_to_list_sorted(dict):
+    list = []
+    for key in dict:
+        value = dict[key]
+        list.append({"name":key,"num":value})
+    return list
+
+def get_num(dict):
+    return dict['num']
 
 #Take a file path and uses the open() method to open it and the read() to display.
 def get_book_text(path):
